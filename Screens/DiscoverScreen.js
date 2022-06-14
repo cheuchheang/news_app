@@ -12,7 +12,7 @@ import { categories, sources } from "../API/api";
 import Carousel from "react-native-snap-carousel";
 
 const DiscoverScreen = () => {
-  const { setCategory, source } = useContext(NewsContext);
+  const { setCategory, setSources } = useContext(NewsContext);
   const windowWidth = Dimensions.get("window").width;
   const SLIDE_WIDTH = Math.round(windowWidth / 3.5);
   return (
@@ -44,7 +44,7 @@ const DiscoverScreen = () => {
       <View style={styles.sources}>
         {sources.map((source) => (
           <TouchableOpacity
-            onPress={() => setSource(source.id)}
+            onPress={() => setSources(source.id)}
             key={source.id}
             style={styles.sourceContainer}
           >
