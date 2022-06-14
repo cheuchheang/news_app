@@ -6,6 +6,7 @@ import NewsScreen from "../Screens/NewsScreen";
 import TopNavigation from "./TopNavigation";
 import { NewsContext } from "../API/Context";
 
+
 const InShortTabs = () => {
   const layout = useWindowDimensions();
 
