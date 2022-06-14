@@ -12,7 +12,7 @@ import React from "react";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-const SingleNews = ({ item, index }) => {
+const SingleNews = ({ item }) => {
   return (
     <View
       style={{
