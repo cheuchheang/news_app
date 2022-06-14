@@ -9,9 +9,8 @@ const Context = ({ children }) => {
   const [index, setIndex] = useState(1);
   const [sources,setSources]=useState()
 
-  const fetchNews = async () => {
-    const { data } = await axios.get(getNewsAPI(category));
-
+  const fetchNews = async (reset=category) => {
+    const { data } = await axios.get(getNewsAPI(reset));
     setNews(data);
     setIndex(1);
   };

@@ -1,12 +1,14 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import {
   MaterialCommunityIcons,
   SimpleLineIcons,
   AntDesign,
 } from "@expo/vector-icons";
+import { NewsContext } from "../API/Context";
 
 const TopNavigation = ({ index, setIndex }) => {
+  const { fetchNews } = useContext(NewsContext);
   return (
     <View style={{ ...styles.container, backgroundColor: "#282C35" }}>
       {index === 0 ? (
@@ -35,7 +37,10 @@ const TopNavigation = ({ index, setIndex }) => {
         {index ? "All News" : "Discover"}
       </Text>
       {index ? (
-        <TouchableOpacity style={styles.right}>
+        <TouchableOpacity
+          style={styles.right}
+          onPress={() => fetchNews("general")}
+        >
           <Text style={styles.text}>
             <AntDesign name="reload1" size={24} color="#007fff" />
           </Text>
