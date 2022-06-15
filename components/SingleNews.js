@@ -6,13 +6,15 @@ import {
   Image,
   ImageBackground,
   TouchableOpacity,
-  Linking
+  Linking,
 } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
+import { NewsContext, darkTheme } from "../API/Context";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 const SingleNews = ({ item }) => {
+  const { darkTheme } = useContext(NewsContext);
   return (
     <View
       style={{
@@ -25,9 +27,18 @@ const SingleNews = ({ item }) => {
         source={{ uri: item.urlToImage }}
         style={{ height: "45%", resizeMode: "cover", width: windowWidth }}
       />
-      <View style={{ ...styles.description, backgroundColor: "#282C35" }}>
-        <Text style={{ ...styles.title, color: "white" }}>{item.title}</Text>
-        <Text style={{ ...styles.content, color: "white" }}>
+      <View
+        style={{
+          ...styles.description,
+          backgroundColor: darkTheme ? "black" : "white",
+        }}
+      >
+        <Text style={{ ...styles.title, color: darkTheme ? "white" : "black" }}>
+          {item.title}
+        </Text>
+        <Text
+          style={{ ...styles.content, color: darkTheme ? "white" : "black" }}
+        >
           {item.description}
         </Text>
         <Text style={{ color: "white" }}>
@@ -38,11 +49,13 @@ const SingleNews = ({ item }) => {
           style={styles.footer}
           source={{ uri: item.urlToImage }}
         >
-          <TouchableOpacity onPress={()=>Linking.openURL(item.url)}>
+          <TouchableOpacity onPress={() => Linking.openURL(item.url)}>
             <Text style={{ fontSize: 15, color: "white" }}>
               ' {item?.content?.slice(0, 45)}...'
             </Text>
-            <Text style={{fontSize:17,fontWeight:"bold",color:"white"}}>Read More</Text>
+            <Text style={{ fontSize: 17, fontWeight: "bold", color: "white" }}>
+              Read More
+            </Text>
           </TouchableOpacity>
         </ImageBackground>
       </View>
@@ -72,8 +85,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingHorizontal: 20,
   },
-  description:{
-    padding:15,
-    flex:1
-  }
+  description: {
+    padding: 15,
+    flex: 1,
+  },
 });
